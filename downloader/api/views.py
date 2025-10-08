@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-import youtube_dlp
+import yt_dlp
 import os
 
 def download_video(request):
@@ -39,7 +39,7 @@ def download_video(request):
             })
 
             # Descargamos el video
-        with youtube_dlp.YoutubeDL(ydl_opts) as ydl:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
         return JsonResponse({'success': True, 'path': output_path})
     except Exception as e:
